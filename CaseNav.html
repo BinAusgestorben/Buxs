@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="cases_data.js"></script>
+</head>
+<body>
+    
+    <div id="row-top" class="topline"></div>
+    <div id="header" class="default">
+        <div class="logo-col"></div>
+            <div class="content"></div>
+        
+            <div class="navbar">
+                <div class="NavTop">
+                    <a href="/Leaderboard" class="navigation-item">Leaderboard</a>
+                    <a href="/FAQ" class="navigation-item">FAQ</a>
+                    <a href="/Affiliates" class="navigation-item">Affiliates</a>
+                    <a href="/Fairness" class="navigation-item">Fairness</a>
+                    <a href="/self-exclude" class="navigation-item">Game Responsibly</a>
+                </div>
+                <div class="bottom">
+                    <div class="NavBot">
+                <div class="section left">
+                    <a href="/index.html">
+                        <button class="B_Modes" id="B_Start">Modes</button>
+                    </a>
+                    <a href="/CaseNav.html">
+                        <button class="B_Modes" id="B_Start">Cases</button>
+                    </a>
+                    <a href="/Case.html">
+                        <button class="B_Modes" id="B_Upgrader">Upgrader</button>
+                    </a>
+
+                </div>
+                <div id="sectionright" class="section right">
+                    <button class="B_Guthaben" id="b_balance">Balance: 
+                        <div class="GuthabenContainer">
+                            <span id="balance-amount"></span>
+                        </div>
+                    </button>
+                    <div id="balance-input-container" class="balanceinputcontainer"></div>
+                    
+                    
+
+
+                </div>
+               
+                </div>
+            </div>     
+            </div>
+        
+    </div>
+
+
+
+    <div id="appContent" class="caselist">
+        <div class="cases">
+            <div class="casenav">
+                <div class="types">
+                    <div id="type-1" class="type active">
+                        <span class="title">Highroller</span>
+                    </div>
+                    <div id="type-2" class="type">
+                        <span class="title">Budget</span>
+                    </div>
+                    <div id="type-3" class="type">
+                        <span class="title">Popular</span>
+                    </div>
+                    <div id="type-4" class="type">
+                        <span class="title">New</span>
+                    </div>
+                </div>
+                <input placeholder="Search for cases" class="casesearch"></input>
+            </div>
+
+            <div id="rowcontent" class="row content">
+
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+ <script src="CaseNav.js"></script>
+</body>
+</html>

@@ -155,7 +155,7 @@ function openCase(casenumber) {
   for (let i = 0; i < items.length; i++) {
     if (ergebnis <= items[i][2] + next) {
         balance += items[i][1];
-
+        storebalance();
         
         console.log(items);
         console.log("New Balance: " + balance.toFixed(2));

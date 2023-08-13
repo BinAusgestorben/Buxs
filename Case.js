@@ -156,6 +156,7 @@ function openCase(casenumber) {
     if (ergebnis <= items[i][2] + next) {
         balance += items[i][1];
         storebalance();
+
         
         console.log(items);
         console.log("New Balance: " + balance.toFixed(2));
@@ -384,7 +385,34 @@ function divMaker(casenumber) {
         const spinnerWidth = spinnerElement.getBoundingClientRect().width;
         console.log("Breite des Elements 'spinner-1':", spinnerWidth);
 
+
+
+        
         adjuster = (spinnerWidth - 2440) / 2;
+
+        /*
+        if (screen.width <= 480) {
+          adjuster += 40;
+        } else {
+          console.log("adjuster not changed");
+        }*/
+
+        /*if (screen.width <= 1024) {
+          adjuster += 40;
+        } else {
+          console.log("adjuster not changed");
+        }*/
+
+        
+        if (screen.width >= 1025) {
+          adjuster += 32;
+        } else {
+          console.log("adjuster not changed");
+        }
+
+      
+
+
 
     } else {
         console.log("Das Element 'spinner-1' wurde nicht gefunden.");

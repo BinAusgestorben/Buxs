@@ -310,6 +310,21 @@ p {
     color:#00ff08;
 }
 
+@media screen and (max-width: 480px) {
+
+    .NavTop a{
+        font-size: smaller;
+    }
+
+    .navigation-item {
+        margin-right: 16px;
+    }
+
+    
+    .bottom, .NavTop {
+        padding: 0 12px;
+    }
+}
 
 .bottom {
     height: 5rem;
@@ -332,7 +347,7 @@ p {
     gap: 16px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
 
     .section.right{
         display: block;
@@ -351,6 +366,14 @@ p {
 .info .image {
     display: grid;
     justify-content: end;
+}
+
+@media screen and (max-width: 768px) {
+
+    .info .image {
+        justify-content: center;
+    }
+
 }
 
 .col-4 {
@@ -468,6 +491,26 @@ img, svg {
     box-shadow: 0px 0px 20px #00ff08;
     transform: translateY(-6px); 
 }
+
+.info .content .buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+/*
+@media screen and (max-width: 480px) {
+
+    .info .content .buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+*/
+
 
 
 
@@ -707,9 +750,37 @@ svg {
     transform: translateY(-6px);  
 }
 
+
+
+@media screen and (max-width: 1024px) {
+
+    .B_Modes {
+        height: 55px;
+        width: 180px;
+    }
+
+    .B_Guthaben {
+        height: 55px;
+        width: 260px;
+    }
+
+}
+
 @media screen and (max-width: 768px) {
 
     .B_Modes {
+        width: 120px;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+
+    .B_Modes {
+        width: 74px;
+    }
+
+    .B_Guthaben {
         width: 120px;
     }
 
@@ -971,14 +1042,14 @@ animation: shake 0.2s ease-in-out 2;
 
 
 /*Media*/
-
+/*
 @media screen and (min-device-width: 800px) and (max-device-width:1700px) and (-webkit-min-device-pixel-ratio:1) {
 
     #header .logo {
         max-width: 20rem
     }
 
-    #header .navbar,#header .top {
+    #header .top {
         padding: 0 2rem 0 1.5rem
     }
 }
@@ -989,11 +1060,12 @@ animation: shake 0.2s ease-in-out 2;
     }
 }
 
+
 @media screen and (min-device-width: 800px) and (max-device-width:1440px) and (-webkit-min-device-pixel-ratio:1) {
     html {
         font-size:12px
     }
-}
+}*/
 
 @media screen and (max-width: 480px) {
 
@@ -1052,18 +1124,20 @@ animation: shake 0.2s ease-in-out 2;
         max-width: 5rem!important
     }
 
-    .case-opener .spinner .pointer {
-        width: calc(100% - 3rem)!important
-    }
 
-    .case-opener .spinner .inner .item {
+    
+    .case-opener .pointer {
+        width: calc(100% - 3rem)!important
+    }  */
+
+    /*.case-opener .spinner .inner .item {
         min-width: 9rem!important
     }
 
     .case-opener .spinner .inner .item.active img {
         max-width: 9.5rem!important
     }
-
+    */
     
 
     .battles>.top .left .button {
@@ -1157,9 +1231,12 @@ animation: shake 0.2s ease-in-out 2;
         display: block
     }
 
+    /*
     .buttons {
-        flex-direction: column
-    }
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }*/
 }
 
 @media screen and (max-width: 1024px) {
@@ -1286,7 +1363,7 @@ animation: shake 0.2s ease-in-out 2;
 
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 480px) {
 
     .items .top .left {
         display: none
@@ -1299,7 +1376,7 @@ animation: shake 0.2s ease-in-out 2;
     }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 480px) {
     .wrapper {
         flex-direction:column
     }
@@ -1313,7 +1390,7 @@ animation: shake 0.2s ease-in-out 2;
 
     .content {
         padding: 0;
-        min-height: 70vh
+        /*min-height: 70vh */
     }
 
     .content>div {
@@ -1343,7 +1420,15 @@ animation: shake 0.2s ease-in-out 2;
     }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 480px) {
+
+    .row.info {
+        gap: 0px;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
     .cases .content {
         padding-left:16px;
         padding-right: 16px
@@ -1359,7 +1444,7 @@ animation: shake 0.2s ease-in-out 2;
     }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 480px) {
 
     .fairness {
         overflow: hidden;

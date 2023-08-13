@@ -260,6 +260,23 @@ p {
     /* overflow-y: scroll; */
 }
 
+@media (max-width: 425px) {
+    #appContent {
+        padding:16px
+    }
+}
+
+@media (min-width: 1024px) {
+    #appContent {
+        padding:32px 64px
+    }
+}
+
+
+
+
+
+
 .navbar {
     width: 100%;
 }
@@ -917,4 +934,418 @@ animation: shake 0.2s ease-in-out 2;
     flex: 1 1 auto;
     --tw-bg-opacity: 1;
     background-color: rgb(31 34 37 / var(--tw-bg-opacity));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Media*/
+
+@media screen and (min-device-width: 800px) and (max-device-width:1700px) and (-webkit-min-device-pixel-ratio:1) {
+
+    #header .logo {
+        max-width: 20rem
+    }
+
+    #header .navbar,#header .top {
+        padding: 0 2rem 0 1.5rem
+    }
+}
+
+@media screen and (min-device-width: 1440px) and (max-device-width:1700px) and (-webkit-min-device-pixel-ratio:1) {
+    html {
+        font-size:14px
+    }
+}
+
+@media screen and (min-device-width: 800px) and (max-device-width:1440px) and (-webkit-min-device-pixel-ratio:1) {
+    html {
+        font-size:12px
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .cases .types {
+        padding: 0 .25rem
+    }
+
+    .cases .type .title {
+        margin: auto 0 auto 2.5rem!important;
+        font-size: 1.2rem!important
+    }
+
+    .cases .content {
+        grid-template-columns: repeat(2,minmax(10rem,1fr))!important
+    }
+
+    .case-opener .info .col-4 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-basis: auto;
+        max-width: 100%
+    }
+
+    .case-opener .info .inner-content {
+        text-align: center
+    }
+
+    .case-opener .info .inner-content .buttons .button {
+        display: block;
+        margin-bottom: 1rem
+    }
+
+    .case-opener .drops .items {
+        grid-template-columns: 1fr 1fr!important
+    }
+
+    .case-opener .drops .drop .middle {
+        max-width: 5rem!important
+    }
+
+    .case-opener .drops .drop .middle:after {
+        background-size: 60% 60%!important
+    }
+
+    .case-opener .drops .drop .middle img {
+        max-width: 4rem!important
+    }
+
+    .case-opener .drops .drop .right {
+        margin-left: .5rem!important;
+        padding: 0!important
+    }
+
+    .case-opener .drops .drop .right .name {
+        max-width: 5rem!important
+    }
+
+    .case-opener .spinner .pointer {
+        width: calc(100% - 3rem)!important
+    }
+
+    .case-opener .spinner .inner .item {
+        min-width: 9rem!important
+    }
+
+    .case-opener .spinner .inner .item.active img {
+        max-width: 9.5rem!important
+    }
+
+    
+
+    .battles>.top .left .button {
+        display: inline;
+        font-size: .8rem!important;
+        margin-left: 1rem;
+        letter-spacing: .5px!important
+    }
+
+    .battles>.top .left .button:nth-child(2n) {
+        margin-left: 0!important
+    }
+
+    .battles>.top .middle {
+        max-width: 10%!important
+    }
+
+    .battles>.top .middle svg {
+        max-width: 80%!important;
+        margin: auto
+    }
+
+    .battles>.top .right .battle-info {
+        display: none
+    }
+
+    .battles>.top .right .button {
+        font-size: .8rem!important;
+        letter-spacing: .5px!important
+    }
+
+    .battles.battle-creator-mobile .top {
+        display: grid;
+        grid-template-columns: auto 1fr
+    }
+
+    .battles.battle-creator-mobile .top .left .button {
+        margin-left: 0!important;
+        margin-right: 1rem
+    }
+
+    .battles.battle-creator-mobile .top .counter {
+        margin: 0!important
+    }
+
+    .battles.battle-creator-mobile .top .middle {
+        display: none
+    }
+
+    .battles.battle-creator-mobile .top .right .counter {
+        border: 0!important
+    }
+
+    .battles.battle-creator-mobile .creator .content {
+        max-width: 100%!important
+    }
+
+    .battles.battle-creator-mobile .caselist {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .battles.battle-creator-mobile .caselist .col {
+        max-width: calc(50% - 1.5rem)!important
+    }
+
+    .battles.battle-creator-mobile .caselist .case img {
+        max-width: 85%!important;
+        margin: 1rem auto!important
+    }
+
+    .battle-creator-modal-mobile .row.info {
+        -webkit-column-gap: 1rem;
+        column-gap: 1rem
+    }
+
+    .battle-creator-modal-mobile .caselist {
+        grid-template-columns: 1fr 1fr!important
+    }
+
+    .battle-creator-modal-mobile .caselist .case {
+        height: 15rem!important
+    }
+
+    .battle-creator-modal-mobile .caselist .case img {
+        margin: 1rem auto auto auto!important
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .default {
+        display: block
+    }
+
+    .buttons {
+        flex-direction: column
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .logo {
+        display:none
+    }
+
+    .navigation {
+        width: 100%
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .cases .types {
+        display:none
+    }
+
+    .cases .content {
+        margin-top: 16px
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .battlelist .battle {
+        display:grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-areas: "rounds cases cases";
+        padding: 32px 16px 16px 16px;
+        grid-row-gap: 24px;
+        background: #25282c!important;
+        margin-top: 22px;
+        border: 3px solid transparent
+    }
+
+    .battlelist .battle:before {
+        top: 0!important;
+        left: 50%!important;
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%)
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .row.top {
+        display:flex;
+        flex-direction: column;
+        gap: 8px
+    }
+
+    .spinner .row.top {
+        flex-direction: row
+    }
+
+    .spinner .row.top .text {
+        display: none
+    }
+
+    .row.top .right {
+        justify-content: space-between
+    }
+
+    .top .right .battleInfo {
+        margin-left: 0;
+        padding: 0;
+        text-align: left
+    }
+
+    .row.top .left .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between
+    }
+
+    .top .middle {
+        display: none
+    }
+
+    .spinner .top .profile .text {
+        margin: 0
+    }
+
+    .spinners {
+        -webkit-column-gap: 6px;
+        column-gap: 6px;
+        row-gap: 76px
+    }
+
+    .spinner .top .profile {
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px
+    }
+
+    .spinner .top .profile .profile-picture {
+        margin: 0
+    }
+
+    .spinner .top .profile .picture {
+        grid-row: auto;
+        grid-column: auto;
+        margin: 0
+    }
+
+/*
+    .spinners.open-3,.spinners.open-4 {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .spinners.open-3 .bottom,.spinners.open-4 .bottom {
+        display: none
+    }
+
+    .spinners.open-3 .spinner.spinner-1,.spinners.open-3 .spinner.spinner-2,.spinners.open-3 .spinner.spinner-3,.spinners.open-4 .spinner.spinner-1,.spinners.open-4 .spinner.spinner-2,.spinners.open-4 .spinner.spinner-3,.spinners.open-4 .spinner.spinner-4 {
+        grid-column: auto;
+        grid-row: auto
+    }
+
+    .spinners.open-3 .pointer,.spinners.open-4 .pointer {
+        display: none
+    }
+
+*/
+
+}
+
+@media screen and (max-width: 425px) {
+
+    .items .top .left {
+        display: none
+    }
+
+    .items .top .right {
+        display: flex;
+        justify-content: space-between;
+        align-items: center
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .wrapper {
+        flex-direction:column
+    }
+
+    .content .navigation {
+        padding: 12px;
+        margin: 0;
+        border: none
+    }
+
+
+    .content {
+        padding: 0;
+        min-height: 70vh
+    }
+
+    .content>div {
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column-reverse
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    .header {
+        padding-top:0!important;
+        padding-bottom: 0!important
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .cases .content,.info {
+        padding-left: 64px;
+        padding-right: 64px
+    }
+
+    .row.info {
+        gap: 48px;
+        flex-direction: column
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .cases .content {
+        padding-left:16px;
+        padding-right: 16px
+    }
+
+    .info {
+        padding-left: 32px;
+        padding-right: 32px
+    }
+
+    .header {
+        display: none
+    }
+}
+
+@media screen and (max-width: 425px) {
+
+    .fairness {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap
+    }
 }

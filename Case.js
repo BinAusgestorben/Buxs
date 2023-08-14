@@ -390,18 +390,19 @@ function divMaker(casenumber) {
         
         adjuster = (spinnerWidth - 2440) / 2;
 
-        /*
+        
         if (screen.width <= 480) {
-          adjuster += 40;
+          adjuster += 35;
         } else {
           console.log("adjuster not changed");
-        }*/
+        }
 
-        /*if (screen.width <= 1024) {
-          adjuster += 40;
+        
+        if (screen.width <= 1024 & screen.width >= 769) {
+          adjuster += 32;
         } else {
           console.log("adjuster not changed");
-        }*/
+        }
 
         
         if (screen.width >= 1025) {

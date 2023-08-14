@@ -105,6 +105,14 @@ ul {
     z-index: 100;
   }
 
+  .botline {
+    height: 3px;
+    background-color: #00ff08;
+    width: 100%;
+  }
+
+
+
 .default {
     height: 7rem;
     width: 100%;
@@ -1538,4 +1546,19 @@ animation: shake 0.2s ease-in-out 2;
         text-overflow: ellipsis;
         white-space: nowrap
     }
+}
+
+
+.spacer{
+    margin-top: 100px;
+}
+
+.footer {
+    background-color: #1f2225;
+    padding: 6px 24px;
+}
+
+.footer .footerinformation a{
+    font-size: xx-large;
+    color: #00ff08;
 }

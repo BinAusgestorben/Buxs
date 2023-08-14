@@ -972,7 +972,11 @@ function balancefield() {
 
 
 document.getElementById("b_balance").onclick = function() {
-  balancefield();
+  if (document.getElementById("balance-input-container").innerHTML === "") {
+    balancefield();
+  } else {
+    console.log("Cant have more than one input");
+  }
 };
 
 

@@ -18,8 +18,18 @@ let winamount = 0;
 let arrayCountNumber = 0;
 let activespinnercount = 1;
 let adjuster = 0;
+//let anNum = null;
+let spanElementsClickable = true;
+
+let activeItemIndex = -1;
+
+let spinneraxis = "x";
+
+let pointeraxis = 0;
 
 let buttonClicked = false;
+let Divver = false;
+let PointersThere = true;
 const buttonReal = document.getElementById('btn-open');
 const buttonDemo = document.getElementById('btn-open-demo')
 
@@ -94,47 +104,110 @@ document.getElementById("span-2").addEventListener("click", spinnerscreate(2), a
 */
 
 document.getElementById("span-1").addEventListener("click", function() {
+  
+  if (spanElementsClickable) {
   document.getElementById("spinners-container").innerHTML = "";
+  spinneraxis = "x";
   spinnerscreate(1);
   activespinnercount = 1;
   spanchange(1)
   spanchangecostchanger(1)
+
+  orientationerChangex();
+
+  pointeraxis = 0;
+
+  if (!PointersThere) {
+    pointerCreate();
+    PointersThere = true;
+  }
+  
+  pointerChangey()
+  showFirstPair()
+  
+}
+
 });
 
 document.getElementById("span-2").addEventListener("click", function() {
+  if (spanElementsClickable) {
   document.getElementById("spinners-container").innerHTML = "";
-  spinnerscreate(2);
+  spinneraxis = "y";
+  spinnerscreatey(2);
   activespinnercount = 2;
   spanchange(2)
   spanchangecostchanger(2)
+  
+  orientationerChangey();
+
+  pointeraxis = 1;
+  
+
+
+  if (!PointersThere) {
+    pointerCreate();
+    PointersThere = true;
+  }
+
+  pointerChangex()
+  showSecondPair()
+}
 });
 
 document.getElementById("span-3").addEventListener("click", function() {
+  if (spanElementsClickable) {
   document.getElementById("spinners-container").innerHTML = "";
-  spinnerscreate(3);
+  spinneraxis = "y";
+  spinnerscreatey(3);
   activespinnercount = 3;
   spanchange(3)
   spanchangecostchanger(3)
+
+  orientationerChangey();
+
+  pointeraxis = 1;
+  
+  if (!PointersThere) {
+    pointerCreate();
+    PointersThere = true;
+  }
+  pointerChangex()
+  showSecondPair()
+}
 });
 
 document.getElementById("span-4").addEventListener("click", function() {
+  if (spanElementsClickable) {
   document.getElementById("spinners-container").innerHTML = "";
-  spinnerscreate(4);
+  spinneraxis = "y";
+  spinnerscreatey(4);
   activespinnercount = 4;
   spanchange(4)
   spanchangecostchanger(4)
+
+  orientationerChangey();
+
+  pointeraxis = 1;
+  
+  if (!PointersThere) {
+    pointerCreate();
+    PointersThere = true;
+  }
+  pointerChangex()
+  showSecondPair()
+}
 });
 
 
 //Functions:
 
-function openCase(casenumber) {
+function openCase(casenumber, anNum) {
 
   buttonDelayReal(buttonReal,8000);
   //buttonDelayDemo(buttonDemo);
 
 
-    document.getElementById("spinnerInner-"+casenumber).style.transform = "translateX(-277.266px)";
+    document.getElementById("spinnerInner-"+casenumber).style.transform = "translate"+ spinneraxis +"(-10.75%)";
     document.getElementById("spinnerInner-"+casenumber).style.transition = "transform 0s ease 0s";
 
     
@@ -145,6 +218,12 @@ function openCase(casenumber) {
       } else {
         buttonClicked = true;
       }
+
+
+  if (!PointersThere) {
+    pointerCreate();
+    PointersThere = true;
+  }
   
 
   let ergebnis = Math.floor(Math.random() * 100 + 1);
@@ -168,12 +247,17 @@ function openCase(casenumber) {
         winner = i;
         console.log("The:" +winner)
       
-
-        redivMaker(casenumber);
-        countDivElements(casenumber);
-
-        caseAnimation(i,winner,casenumber);
+        if (Divver) {
+          redivMaker(casenumber);
+        }
+        else {
+          Divver=true;
+        }
         
+        //countDivElements(casenumber);
+
+        caseAnimation(winner,casenumber, anNum);
+        //itemActivator(casenumber);
       break;
     } else {
       console.log("Not");
@@ -189,7 +273,7 @@ function openCaseDemo(casenumber) {
   //buttonDelayDemo(buttonDemo);
 
 
-    document.getElementById("spinnerInner-"+casenumber).style.transform = "translateX(-277.266px)";
+    document.getElementById("spinnerInner-"+casenumber).style.transform = "translate"+spinneraxis+"(-277.266px)";
     document.getElementById("spinnerInner-"+casenumber).style.transition = "transform 0s ease 0s";
 
     
@@ -226,7 +310,7 @@ function openCaseDemo(casenumber) {
         redivMaker(casenumber);
         countDivElements(casenumber);
 
-        caseAnimation(i,winner,casenumber);
+        caseAnimation(winner,casenumber);
         
       break;
     } else {
@@ -238,77 +322,71 @@ function openCaseDemo(casenumber) {
 
 function divMaker(casenumber) {
    
-
-  let ergebnis = Math.floor(Math.random() * 100 + 1);
-  let next = 0;
-
-    // Get the container element
-    
-  
     // Create 100 div elements using the divCreate function and append them to the container element
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 60; i++) {
       let rndItem = Math.floor(Math.random() * items.length);
 
       let spinnerInner = document.getElementById(`spinnerInner-${casenumber}`);  
       spinnerInner.appendChild(divCreate(i, rndItem, casenumber));
     }
+
+
+    let spinnerItem = document.getElementById("spinner-" + casenumber + "-item-6");
+    spinnerItem.querySelector(".item").classList.add("active");
+    spinnerItem.querySelector(".itemImageContainer").classList.add("active");
+
+
+
   }
 
 
   
 
   function divCreate(i, rndItem, spinner) {
-    // Create the div element
-    var divElement = document.createElement("div");
-    divElement.id = "spinner-" + spinner + "-item-" + i;
-    divElement.className = "item " + items[rndItem][4];
-  
-    // Create the content div
-    var divCon = document.createElement("div");
-    divCon.className = "content";
-    divElement.appendChild(divCon);
-  
-    // Create the item image element
-    var itemImage = document.createElement("img");
-    itemImage.src = items[rndItem][3];
-    divCon.appendChild(itemImage);
-  
-    // Create the item name span
-    var spanItemName = document.createElement("span");
-    spanItemName.className = "name";
-    var spanItemNameText = document.createTextNode(items[rndItem][0]);
-    spanItemName.appendChild(spanItemNameText);
-    divCon.appendChild(spanItemName);
-  
-    // Create the item price span
-    var spanItemPrice = document.createElement("span");
-    spanItemPrice.className = "price";
-    divCon.appendChild(spanItemPrice);
-  
-    // Create the price wrapper div
-    var divPriceWrapper = document.createElement("div");
-    divPriceWrapper.className = "price-wrapper";
-    spanItemPrice.appendChild(divPriceWrapper);
-  
-    // Create the price image wrapper div
-    var divPriceImageWrapper = document.createElement("div");
-    divPriceImageWrapper.className = "price-image-wrapper";
-    divPriceWrapper.appendChild(divPriceImageWrapper);
-  
-    // Create the price image element
-    var priceImage = document.createElement("img");
-    priceImage.src = "images/gem.svg";
-    divPriceImageWrapper.appendChild(priceImage);
 
-    // Create the price text span
-    var spanPriceText = document.createElement("span");
-    var spanPriceTextNode = document.createTextNode(items[rndItem][1]);
-    spanPriceText.appendChild(spanPriceTextNode);
-    divPriceWrapper.appendChild(spanPriceText);
-    
-    // Return the div element
-    return divElement;
-    
+    let divElement = document.createElement("div");
+    divElement.id = "spinner-" + spinner + "-item-" + i;
+    divElement.className = "itemcontainer";
+    divElement.style.transform = "none";
+  
+    let item = document.createElement("div");
+    item.className = "item";
+    divElement.appendChild(item);
+  
+    let itemImageContainer = document.createElement("div");
+    itemImageContainer.className = "itemImageContainer";
+    item.appendChild(itemImageContainer);
+
+    let itemImage = document.createElement("img");
+    itemImage.alt = items[rndItem][0];
+    itemImage.src = items[rndItem][3];
+    itemImage.loading = "lazy";
+    itemImage.className = "itemImage";
+    itemImage.style.position = "absolute";
+    itemImage.style.height = "100%";
+    itemImage.style.width = "100%";
+    itemImage.style.inset = "0px";
+    itemImage.style.color = "transparent";
+    itemImageContainer.appendChild(itemImage);
+  
+
+    let itemBackground = document.createElement("div");
+    itemBackground.style.filter = items[rndItem][4][1];
+    itemBackground.draggable= "false";
+    itemBackground.className = "itemBackground";
+    item.appendChild(itemBackground);
+
+    let itemBackgroundImage = document.createElement("img");
+    itemBackgroundImage.alt = items[rndItem][0];
+    itemBackgroundImage.srcset = items[rndItem][4][0] + " 1x", items[rndItem][4][0] + " 2x";
+    itemBackgroundImage.src = items[rndItem][4][0];
+    itemBackgroundImage.width = "64";
+    itemBackgroundImage.height = "64";
+    itemBackgroundImage.className = "itemBackgroundImage";
+    itemBackgroundImage.loading = "lazy";
+    itemBackgroundImage.style.color = "transparent";
+    itemBackground.appendChild(itemBackgroundImage);
+  return divElement;
   }
 
 
@@ -316,7 +394,7 @@ function divMaker(casenumber) {
 
 
 
-
+/*
 
   function countDivElements(casenumber) {
 
@@ -324,22 +402,6 @@ function divMaker(casenumber) {
   
     let ergebnis = Math.floor(Math.random() * 100 + 1);
     let next = 0;
-  /*
-    let items = [];
-    // Add items to the items array in the specified order
-    for (let i = gold.length - 1; i >= 0; i--) {
-      items.push(gold[i]);
-    }
-    for (let i = red.length - 1; i >= 0; i--) {
-      items.push(red[i]);
-    }
-    for (let i = purple.length - 1; i >= 0; i--) {
-      items.push(purple[i]);
-    }
-    for (let i = blue.length - 1; i >= 0; i--) {
-      items.push(blue[i]);
-    }
-    console.log(items); */
 
 
     // Create an empty array for each item in the items array
@@ -362,111 +424,304 @@ function divMaker(casenumber) {
   
     // Log the counts array
     console.log(counts + "counts for case " + casenumber);
-  }
+  } */
 
 
 
-  function caseAnimation(i,winner,casenumber){
+  function caseAnimation(winner,casenumber, anNum){
     
-
-    let exciteRandomPlus =  Math.floor((Math.random() * 75) + 1);
-
-    let exciteRandomMinus =  Math.floor((Math.random() * -75) + 1);
-
-    let exiteRandom = [exciteRandomPlus, exciteRandomMinus]
-
-    let exciteRandomDecision =  Math.floor((Math.random() * 2));
+    winItemCreate(winner,casenumber, anNum);
 
 
-    const spinnerElement = document.querySelector("#spinner-1");
-    // Überprüfen, ob das Element gefunden wurde
-    if (spinnerElement) {
-        // Die Breite des Elements ermitteln
-        const spinnerWidth = spinnerElement.getBoundingClientRect().width;
-        console.log("Breite des Elements 'spinner-1':", spinnerWidth);
+  
+
+  //let starter = 7;
+  let starterObject = { value: 7 };
 
 
+    
+  let animationInterval = setInterval(function() {
 
-        
-        adjuster = (spinnerWidth - 2440) / 2;
-
-        
-        if (screen.width <= 480) {
-          adjuster += 35;
-        } else {
-          console.log("adjuster not changed");
-        }
-
-        
-        if (screen.width <= 1024 & screen.width >= 769) {
-          adjuster += 32;
-        } else {
-          console.log("adjuster not changed");
-        }
-
-        
-        if (screen.width >= 1025) {
-          adjuster += 32;
-        } else {
-          console.log("adjuster not changed");
-        }
-
-      
-
-
-
-    } else {
-        console.log("Das Element 'spinner-1' wurde nicht gefunden.");
+    if (spinneraxis === "x") {
+      itemActivatory(casenumber,starterObject);
     }
+    else {
+      itemActivatorx(casenumber,starterObject);   
+    }
+  },4); 
 
-
-    let winnerArrayNumber = Math.floor((Math.random() * counts[i].length));
-    console.log(winnerArrayNumber)
-    arrayCountNumber = counts[winner][winnerArrayNumber];
-    console.log(arrayCountNumber)
-    let spinReach = (-arrayCountNumber * 160) +1092 + exiteRandom[exciteRandomDecision]+adjuster;
-    let spinReachReal = (-arrayCountNumber * 160) +1092 +adjuster;
-    console.log(spinReach)
+    
 
     setTimeout(function() {
         
-      spinnersound();
+      //spinnersound();
 
-        const timeInterval = 7.5 / arrayCountNumber;
+       // const timeInterval = 7.5 / arrayCountNumber;
         //document.getElementById("spinnerInner").style.transition = "transform 7.5s cubic-bezier(0.1, 0, 0.2, 1) 0s";
       
-        document.getElementById("spinnerInner-"+casenumber).style.transform = "translateX(" + spinReach + "px)";
+        document.getElementById("spinnerInner-"+casenumber).style.transform = "translate"+spinneraxis+"("+Animations[anNum][1]+")";
         document.getElementById("spinnerInner-"+casenumber).style.transition = "transform 7.5s cubic-bezier(0.1, 0, 0.2, 1) 0s";
         //activateGoldItems(arrayCountNumber, spinReach,winner);
         
         
         setTimeout(function() {
           
-          document.getElementById("spinnerInner-"+casenumber).style.transform = "translateX(" + spinReachReal + "px)";
+          document.getElementById("spinnerInner-"+casenumber).style.transform = "translate"+spinneraxis+"("+Animations[anNum][2]+")";
           document.getElementById("spinnerInner-"+casenumber).style.transition = "transform 0.25s cubic-bezier(0.1, 0, 0.2, 1) 0s";
           
-
+          clearInterval(animationInterval);
         }, 7500);
 
       }, 250);
   
-      activateWinner(arrayCountNumber,casenumber);
+      activateWinner(casenumber, winner, anNum);
       
 
   }
 
+  function rndAnimation() {
+    let rndAnNum = Math.floor(Math.random() * 4);
+    console.log("DieRnd Animation: " + rndAnNum);
+
+    return rndAnNum;
+  }
+
+  function winItemCreate(winner,casenumber,anNum) {
+    // Änderungen am item-Element
+    let itemElement = document.getElementById("spinner-" + casenumber + "-item-" + Animations[anNum][0]);
+    //itemElement.className = "item win";
+
+    // Änderungen am itemImageContainer-Element
+    let itemImageContainer = itemElement.querySelector(".itemImageContainer");
+    //itemImageContainer.className = "itemImageContainerWin";
+
+    // Änderungen am itemImage-Element
+    let itemImage = itemImageContainer.querySelector(".itemImage");
+    itemImage.alt = items[winner][0];
+    itemImage.src = items[winner][3];
+
+    // Änderungen am itemBackground-Element
+    let itemBackground = itemElement.querySelector(".itemBackground");
+    itemBackground.style.filter = items[winner][4][1];
+
+    let itemBackgroundImage = itemElement.querySelector(".itemBackgroundImage");
+    itemBackgroundImage.alt = items[winner][0];
+    itemBackgroundImage.srcset = items[winner][4][0] + " 1x", items[winner][4][0] + " 2x";
+    itemBackgroundImage.src = items[winner][4][0];
+  }
 
 
-  function activateWinner(arrayCountNumber,casenumber) {
+
+
+
+  function activateWinner(casenumber, winner, anNum) {
 
     setTimeout(function() {
 
-     let live = document.getElementById("spinner-"+casenumber+"-item-" + arrayCountNumber).className;
-    document.getElementById("spinner-"+casenumber+"-item-" + arrayCountNumber).className= live +(" active win"); 
+      let itemElement = document.getElementById("spinner-" + casenumber + "-item-" + Animations[anNum][0]);
+      let itemContainer = itemElement.querySelector(".item");
+      itemContainer.className = "itemWin";
+      let itemImageContainer = itemElement.querySelector(".itemImageContainer");
+      itemImageContainer.className = "itemImageContainerWin";
+
+
+      let itemWinInfo = document.createElement("div");
+      itemWinInfo.className = "itemWinInfo";
+      itemWinInfo.style.opacity = "1";
+      itemWinInfo.style.transform = "none";
+      itemElement.appendChild(itemWinInfo);
+
+
+      let itemWinInfoContainer = document.createElement("div");
+      itemWinInfoContainer.className = "itemWinInfoContainer";
+      itemWinInfo.appendChild(itemWinInfoContainer);
+
+
+      let itemWinNameContainer = document.createElement("div");
+      itemWinNameContainer.className = "itemWinNameContainer";
+      itemWinInfoContainer.appendChild(itemWinNameContainer);
+
+      let itemWinName = document.createElement("div");
+      itemWinName.className = "itemWinName";
+      itemWinNameContainer.appendChild(itemWinName);
+      let itemWinNameText = document.createTextNode(items[winner][0]);
+      itemWinName.appendChild(itemWinNameText);
+
+
+
+
+      let itemWinprice = document.createElement("span");
+      itemWinprice.className = "price";
+      itemWinInfoContainer.appendChild(itemWinprice);
+
+      let itemWinpriceWrapper = document.createElement("div");
+      itemWinpriceWrapper.className = "price-wrapper";
+      itemWinprice.appendChild(itemWinpriceWrapper);   
+
+      let itemWinimageWrapper = document.createElement("div");
+      itemWinimageWrapper.className = "price-image-wrapper";
+      itemWinpriceWrapper.appendChild(itemWinimageWrapper);
+
+      let itemWinImage = document.createElement("img");
+      itemWinImage.src = "images/gem.svg";
+      itemWinimageWrapper.appendChild(itemWinImage);
+            
+      let itemWinpriceText = document.createTextNode(items[winner][1]);
+      itemWinpriceWrapper.appendChild(itemWinpriceText);
+     
+
+
+
+      initializePointers();
+     // document.getElementById("pointers").innerHTML = "";
+    //  PointersThere = false;     
+
 
     }, 7750);
     
   }
+
+
+/*
+  function pointerCreate() {
+    let pointerHand = document.getElementById("pointers");
+
+    let pointer1 = document.createElement("svg");
+    pointer1.stroke = "currentColor";
+    pointer1.fill = "currentColor";
+    pointer1.viweBox = "0 0 24 24";
+    pointer1.className = "pointercolor";
+    pointer1.height = "1em";
+    pointer1.width = "1em";
+    pointer1.xmlns = "http://www.w3.org/2000/svg";
+    pointerHand.appendChild("pointer1");
+
+    let pointer1path = document.createElement("path");
+    pointer1path.d = Pointers[pointeraxis][0];
+    pointer1.appendChild(pointer1path);
+
+    let pointer2 = document.createElement("svg");
+    pointer2.stroke = "currentColor";
+    pointer2.fill = "currentColor";
+    pointer2.viweBox = "0 0 24 24";
+    pointer2.className = "pointercolor";
+    pointer2.height = "1em";
+    pointer2.width = "1em";
+    pointer2.xmlns = "http://www.w3.org/2000/svg";
+    pointerHand.appendChild("pointer2");
+
+    let pointer2path = document.createElement("path");
+    pointer2path.d = Pointers[pointeraxis][1];
+    pointer2.appendChild(pointer2path);
+
+  }
+
+  function pointerCreate() {
+    let pointerHand = document.getElementById("pointers");
+
+    let pointer1 = document.createElement("svg");
+    pointer1.setAttribute("stroke", "currentColor");
+    pointer1.setAttribute("fill", "currentColor");
+    pointer1.setAttribute("stroke-width", "0");
+    pointer1.setAttribute("viewBox", "0 0 24 24");
+    pointer1.className = "pointercolor";
+    pointer1.setAttribute("height", "1em"); // Set the height to a value that fits your design
+    pointer1.setAttribute("width", "1em");  // Set the width to a value that fits your design
+    pointer1.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    pointerHand.appendChild(pointer1);
+
+    let pointer1path = document.createElement("path");
+    pointer1path.setAttribute("d", Pointers[pointeraxis][0]);
+    pointer1.appendChild(pointer1path);
+
+    let pointer2 = document.createElement("svg");
+    pointer2.setAttribute("stroke", "currentColor");
+    pointer2.setAttribute("fill", "currentColor");
+    pointer2.setAttribute("stroke-width", "0");
+    pointer2.setAttribute("viewBox", "0 0 24 24");
+    pointer2.className = "pointercolor";
+    pointer2.setAttribute("height", "1em"); // Set the height to a value that fits your design
+    pointer2.setAttribute("width", "1em");  // Set the width to a value that fits your design
+    pointer2.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    pointerHand.appendChild(pointer2);
+
+    let pointer2path = document.createElement("path");
+    pointer2path.setAttribute("d", Pointers[pointeraxis][1]);
+    pointer2.appendChild(pointer2path);
+}
+*/
+
+
+
+
+function showFirstPair() {
+  document.getElementById("pointer-1-ypath").style.display = "block";
+  document.getElementById("pointer-1-xpath").style.display = "none";
+
+  document.getElementById("pointer-2-ypath").style.display = "block";
+  document.getElementById("pointer-2-xpath").style.display = "none";
+}
+
+function showSecondPair() {
+  document.getElementById("pointer-1-ypath").style.display = "none";
+  document.getElementById("pointer-1-xpath").style.display = "block";
+
+  document.getElementById("pointer-2-ypath").style.display = "none";
+  document.getElementById("pointer-2-xpath").style.display = "block";
+}
+
+
+
+
+
+
+function pointerChangex() {
+  let pointercng = document.getElementById("pointers");
+  pointercng.className = "pointersx";
+}
+
+
+function pointerChangey() {
+  let pointercng = document.getElementById("pointers");
+  pointercng.className = "pointersy";
+}
+
+
+
+
+
+function pointerCreate() {
+  let pointerHand = document.getElementById("pointers");
+
+  // Entferne die unsichtbare Klasse von den SVG-Elementen, um sie sichtbar zu machen
+  pointerHand.querySelectorAll("svg").forEach(svg => {
+      console.log("Test");
+      svg.classList.remove("invisiblePointers");
+  });
+}
+
+
+
+
+function initializePointers() {
+  let pointerHand = document.getElementById("pointers");
+  pointerHand.querySelectorAll("svg").forEach(svg => {
+      svg.classList.add("invisiblePointers");
+  });
+
+  PointersThere = false;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -479,26 +734,6 @@ function divMaker(casenumber) {
 
 function dropmaker() {
   
-  /*
-  let items = [];
-
-  // Add items to the items array in the specified order
-  for (let i = gold.length - 1; i >= 0; i--) {
-    items.push(gold[i]);
-  }
-  for (let i = red.length - 1; i >= 0; i--) {
-    items.push(red[i]);
-  }
-  for (let i = purple.length - 1; i >= 0; i--) {
-    items.push(purple[i]);
-  }
-  for (let i = blue.length - 1; i >= 0; i--) {
-    items.push(blue[i]);
-  }
-  console.log(items); */
-
-
-
   let times = items.length;
   for (let i = 0; i < times; i++) {
     dropcreate(i);
@@ -506,69 +741,97 @@ function dropmaker() {
 }
 
 function dropcreate(i) {
-  var rowdrop = document.createElement("div");
-    rowdrop.className = "row drop " + items[i][4];
+  let rowdrop = document.createElement("div");
+    rowdrop.className = "row drop " + items[i][4][2];
+  
+  let dropImages = document.createElement("div");
+  dropImages.className = "dropImages";
+  rowdrop.appendChild(dropImages);
 
-    var dropback = document.createElement("div");
-    dropback.className = "back";
-    rowdrop.appendChild(dropback);
 
-    var dropleftcol = document.createElement("div");
-    dropleftcol.className = "left col";
-    rowdrop.appendChild(dropleftcol);
-    
-      var dropside = document.createElement("div");
-      dropside.className = "side";
-      dropleftcol.appendChild(dropside);
+  let itemImageContainer = document.createElement("div");
+  itemImageContainer.className = "dropImageContainer";
+  dropImages.appendChild(itemImageContainer);
 
-    var dropmiddlecol = document.createElement("div");
-    dropmiddlecol.className = "middle col";    
-    rowdrop.appendChild(dropmiddlecol);
+  let itemImage = document.createElement("img");
+  itemImage.alt = items[i][0];
+  itemImage.src = items[i][3];
+  itemImage.loading = "lazy";
+  itemImage.className = "dropImage";
+  itemImage.style.position = "absolute";
+  itemImage.style.height = "100%";
+  itemImage.style.width = "100%";
+  itemImage.style.inset = "0px";
+  itemImage.style.color = "transparent";
+  itemImageContainer.appendChild(itemImage);
 
-      var dropmidcolimg = document.createElement("img");
-      dropmidcolimg.src = items[i][3];
-      dropmidcolimg.className = "item";
-      dropmiddlecol.appendChild(dropmidcolimg);
-    
-    var droprightcol = document.createElement("div");
-    droprightcol.className = "right col";
-    rowdrop.appendChild(droprightcol);
 
-      var droprightcoldiv= document.createElement("div");
-      droprightcol.appendChild(droprightcoldiv);
+  let itemBackground = document.createElement("div");
+  itemBackground.style.filter = items[i][4][1];
+  itemBackground.draggable= "false";
+  itemBackground.className = "dropBackground";
+  dropImages.appendChild(itemBackground);
 
-        var droprightcolname = document.createElement("p");
-        droprightcolname.className = "name";
-          var droprightcolnametext = document.createTextNode(items[i][0]);
-          droprightcolname.appendChild(droprightcolnametext);
-        droprightcoldiv.appendChild(droprightcolname);
+  let itemBackgroundImage = document.createElement("img");
+  itemBackgroundImage.alt = items[i][0];
+  itemBackgroundImage.srcset = items[i][4][0] + " 1x", items[i][4][0] + " 2x";
+  itemBackgroundImage.src = items[i][4][0];
+  itemBackgroundImage.width = "64";
+  itemBackgroundImage.height = "64";
+  itemBackgroundImage.className = "dropBackgroundImage";
+  itemBackgroundImage.loading = "lazy";
+  itemBackgroundImage.style.color = "transparent";
+  itemBackground.appendChild(itemBackgroundImage);
 
-        var droprightcolprice = document.createElement("span");
-        droprightcolprice.className = "price";
-        droprightcoldiv.appendChild(droprightcolprice);
 
-          var droprightcolpricewrapper = document.createElement("div");
-          droprightcolpricewrapper.className = "price-wrapper";
-         
 
-            var droprightcolpriceimagewrapper = document.createElement("div");
-            droprightcolpriceimagewrapper.className = "price-image-wrapper";
-            droprightcolpricewrapper.appendChild(droprightcolpriceimagewrapper);
 
-              var droprightcolpriceimage = document.createElement("img");
-              droprightcolpriceimage.src = "images/gem.svg";
-              droprightcolpriceimagewrapper.appendChild(droprightcolpriceimage);
+
+  let dropInformations = document.createElement("div");
+  dropInformations.className = "dropInformations";
+  rowdrop.appendChild(dropInformations);
+
+  let dropInformationsNameContainer = document.createElement("div");
+  dropInformationsNameContainer.className = "dropInformationsNameContainer";
+      dropInformations.appendChild(dropInformationsNameContainer);
+
+      let dropInformationsName = document.createElement("div");
+      dropInformationsName.className = "dropInformationsName";
+      dropInformationsNameContainer.appendChild(dropInformationsName);
+      let dropInformationsNameText = document.createTextNode(items[i][0]);
+      dropInformationsName.appendChild(dropInformationsNameText);
+
+
+
+
+      let dropInformationsprice = document.createElement("span");
+      dropInformationsprice.className = "price";
+      dropInformations.appendChild(dropInformationsprice);
+
+      let dropInformationspricepriceWrapper = document.createElement("div");
+      dropInformationspricepriceWrapper.className = "price-wrapper";
+      dropInformationsprice.appendChild(dropInformationspricepriceWrapper);   
+
+      let dropInformationsimageWrapper = document.createElement("div");
+      dropInformationsimageWrapper.className = "price-image-wrapper";
+      dropInformationspricepriceWrapper.appendChild(dropInformationsimageWrapper);
+
+      let dropInformationsImage = document.createElement("img");
+      dropInformationsImage.src = "images/gem.svg";
+      dropInformationsimageWrapper.appendChild(dropInformationsImage);
             
-            var droprightcolpricetext = document.createTextNode(items[i][1]);
-            droprightcolpricewrapper.appendChild(droprightcolpricetext);
-            droprightcolprice.appendChild(droprightcolpricewrapper);
-        
-        var droprightcolodds = document.createElement("span");
-        droprightcolodds.className = "odds";
-          var droprightcoloddstext = document.createTextNode(items[i][2] + "%");
-          droprightcolodds.appendChild(droprightcoloddstext);
-        droprightcoldiv.appendChild(droprightcolodds);
+      let dropInformationspriceText = document.createTextNode(items[i][1]);
+      dropInformationspricepriceWrapper.appendChild(dropInformationspriceText);
 
+
+
+
+  let dropOdds = document.createElement("div");
+  dropOdds.className = "dropOdds";
+  rowdrop.appendChild(dropOdds);
+  let dropOddsText = document.createTextNode(items[i][2]+"%");
+  dropOdds.appendChild(dropOddsText);
+  
   document.getElementById("rowdrops").appendChild(rowdrop);
 }
 
@@ -609,11 +872,74 @@ function spinnercreate(whichspinner) {
     let spinnerinnercreater = document.createElement("div");
     spinnerinnercreater.className = "inner";
     spinnerinnercreater.id = "spinnerInner-" + whichspinner;
-    spinnerinnercreater.style.transform = "translateX(-277.266px)";
+    spinnerinnercreater.style.transform = "translateX(-10.75%)";
     spinnerinnercreater.style.transition = "transform 0s ease 0s";
     spinner.appendChild(spinnerinnercreater);
     document.getElementById("spinners-container").appendChild(spinner);
 }
+
+
+
+
+
+
+
+
+
+
+
+function spinnerscreatey(amount) {
+  for (let i = 0; i < amount; i++) {
+    spinnercreatey(i+1);
+    //spinnerinnermaker(i+1);
+    divMaker(i+1);
+  }
+}
+
+function spinnercreatey(whichspinner) {
+  let spinner = document.createElement("div");
+  spinner.className = "spinnery";
+  spinner.id = "spinner-" + whichspinner;
+
+   // let spinnerpointertop= document.createElement("div");
+   // spinnerpointertop.className = "pointer top";
+   // spinner.appendChild(spinnerpointertop);
+    let spinnerleft= document.createElement("div");
+    spinnerleft.className = "left";
+    spinner.appendChild(spinnerleft);
+
+    let spinnerright= document.createElement("div");
+    spinnerright.className = "right";
+    spinner.appendChild(spinnerright);
+
+    let spinnerinnercreater = document.createElement("div");
+    spinnerinnercreater.className = "inner";
+    spinnerinnercreater.id = "spinnerInner-" + whichspinner;
+    spinnerinnercreater.style.transform = "translate"+spinneraxis+"(-10.75%)";
+    spinnerinnercreater.style.transition = "transform 0s ease 0s";
+    spinner.appendChild(spinnerinnercreater);
+    document.getElementById("spinners-container").appendChild(spinner);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -625,26 +951,175 @@ function openCases(casesnumber) {
     storebalance();
     document.getElementById("balance-amount").innerHTML = balance.toFixed(2) + "€";
 
+    spanElementsClickable = false;
+
+    let anNum = rndAnimation();
+
   for (let i = 0; i < casesnumber; i++) {
-      openCase(i+1);
+      openCase(i+1, anNum);
     }
 
   setTimeout(function() {
+
+  spanElementsClickable = true;
+  
   console.log("!!!!The displayed balance is:" + balance.toFixed(2))
   document.getElementById("balance-amount").innerHTML = balance.toFixed(2) + "€";
   spinsoundwin();
   blinkbalancebutton()
-   
-  /*(i == 0){
-  setTimeout(function() {
-  playSoundOpWin();
-    }, 300);
-  }
-  */
-
-
     }, 7750);
 }
+
+
+
+function itemActivatory(casenumber,starterObject) {
+  let spinnerInner = document.getElementById("spinnerInner-" + casenumber);
+  let spinnerItems = spinnerInner.getElementsByClassName("itemcontainer");
+
+  // Überprüfen, ob sich aktuell ein neues Element zwischen den Pointern befindet
+  let newActiveItemIndex = -1;
+  for (let z = 0; z < spinnerItems.length; z++) {
+      let spinnerItem = spinnerItems[z];
+      let itemRect = spinnerItem.getBoundingClientRect();
+      let pointersRect = document.getElementById("pointers").getBoundingClientRect();
+
+      // Überprüfen, ob sich das Element zwischen den Pointern befindet
+      if (itemRect.left > pointersRect.left && itemRect.left < pointersRect.right) {
+        newActiveItemIndex = z;
+        break; // Wir haben das aktive Element gefunden, beenden die Schleife
+    }
+  }
+
+
+  // Aktualisieren Sie die "active" Eigenschaft der Elemente
+  for (let i = 0; i < spinnerItems.length; i++) {
+      let spinnerItem = spinnerItems[i];
+      let isActive = i === newActiveItemIndex;
+      spinnerItem.active = isActive;
+
+      if (isActive &&starterObject.value !== i) {
+        spinnerItem.querySelector(".item").classList.add("active");
+        spinnerItem.querySelector(".itemImageContainer").classList.add("active");
+
+        document.getElementById("spinner-"+casenumber+"-item-"+ (i-1)).querySelector(".item").classList.remove("active");
+        document.getElementById("spinner-"+casenumber+"-item-"+ (i-1)).querySelector(".itemImageContainer").classList.remove("active");
+
+        if (spinnerInner == document.getElementById("spinnerInner-" + 1)) {
+          tickSound(); 
+        }
+        
+        starterObject.value = i;
+    }  
+}
+}
+
+
+function itemActivatorx(casenumber,starterObject) {
+  let spinnerInner = document.getElementById("spinnerInner-" + casenumber);
+  let spinnerItems = spinnerInner.getElementsByClassName("itemcontainer");
+
+  // Überprüfen, ob sich aktuell ein neues Element zwischen den Pointern befindet
+  let newActiveItemIndex = -1;
+  for (let z = 0; z < spinnerItems.length; z++) {
+      let spinnerItem = spinnerItems[z];
+      let itemRect = spinnerItem.getBoundingClientRect();
+      let pointersRect = document.getElementById("pointers").getBoundingClientRect();
+
+      // Überprüfen, ob sich das Element zwischen den Pointern befindet
+      if (itemRect.top < pointersRect.top && itemRect.bottom > pointersRect.bottom) {
+        newActiveItemIndex = z;
+        break; // Wir haben das aktive Element gefunden, beenden die Schleife
+    }
+  }
+
+
+  // Aktualisieren Sie die "active" Eigenschaft der Elemente
+  for (let i = 0; i < spinnerItems.length; i++) {
+      let spinnerItem = spinnerItems[i];
+      let isActive = i === newActiveItemIndex;
+      spinnerItem.active = isActive;
+
+      if (isActive &&starterObject.value !== i) {
+        spinnerItem.querySelector(".item").classList.add("active");
+        spinnerItem.querySelector(".itemImageContainer").classList.add("active");
+
+        document.getElementById("spinner-"+casenumber+"-item-"+ (i-1)).querySelector(".item").classList.remove("active");
+        document.getElementById("spinner-"+casenumber+"-item-"+ (i-1)).querySelector(".itemImageContainer").classList.remove("active");
+
+        if (spinnerInner == document.getElementById("spinnerInner-" + 1)) {
+          tickSound(); 
+        }
+        
+        starterObject.value = i;
+    }  
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function orientationerChangey (){
+  document.getElementById("orientationer").orientation = "vertical";
+  document.getElementById("orientationer").className = "orientationery";
+
+  document.getElementById("spinners-container").className = "spinners-containery"; 
+}
+
+function orientationerChangex (){
+  document.getElementById("orientationer").orientation = "horizontal";
+  document.getElementById("orientationer").className = "orientationerx";
+
+  document.getElementById("spinners-container").className = "spinners-containerx"; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -678,36 +1153,19 @@ function redivMaker(casenumber) {
    
   
   
-
-let ergebnis = Math.floor(Math.random() * 100 + 1);
-let next = 0;
-/*
-  let items = [];
-// Add items to the items array in the specified order
-for (let i = gold.length - 1; i >= 0; i--) {
-  items.push(gold[i]);
-}
-for (let i = red.length - 1; i >= 0; i--) {
-  items.push(red[i]);
-}
-for (let i = purple.length - 1; i >= 0; i--) {
-  items.push(purple[i]);
-}
-for (let i = blue.length - 1; i >= 0; i--) {
-  items.push(blue[i]);
-}
-console.log(items); */
- 
-  // Get the container element
-  
-
-  // Create 100 div elements using the divCreate function and append them to the container element
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 60; i++) {
     let rndItem = Math.floor(Math.random() * items.length);
 
     let spinnerInner = document.getElementById("spinnerInner-" + casenumber);  
     spinnerInner.appendChild(divCreate(i, rndItem, casenumber));
   }
+
+
+  let spinnerItem = document.getElementById("spinner-" + casenumber + "-item-6");
+    spinnerItem.querySelector(".item").classList.add("active");
+    spinnerItem.querySelector(".itemImageContainer").classList.add("active");
+
+
 }
 
 function spanchange(number){
@@ -767,6 +1225,11 @@ function spinsoundwin() {
   audio.play();
 }
 
+function tickSound() {
+  var audio = new Audio("sounds/tickSound.mp3");
+
+  audio.play();
+}
 function blinkbalancebutton() {
   const button = document.getElementById("b_balance");
   

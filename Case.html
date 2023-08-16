@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Case</title>
     <link rel="stylesheet" href="style.css">
     <script src="cases_data.js"></script>
 </head>
@@ -32,7 +32,7 @@
                         <button class="B_Modes" id="B_Start">Cases</button>
                     </a>
                     <a href="./Battles">
-                        <button class="B_Modes" id="B_Battles">Battles</button>
+                        <button class="B_Modes" id="B_Battle">Battles</button>
                     </a>
 
                 </div>
@@ -40,10 +40,11 @@
                     <button class="B_Guthaben" id="b_balance">Balance: 
                         <div class="GuthabenContainer">
                             <span id="balance-amount"></span>
+                            
                         </div>
                     </button>
-                    <div id="balance-input-container" class="balanceinputcontainer"></div>
                     
+                    <div id="balance-input-container" class="balanceinputcontainer"></div>
                     
 
 
@@ -135,29 +136,36 @@
 
 
 
-            <div class="pointer top">
-                    <svg width="20" height="11" viewBox="0 0 20 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.31795 10.3639C9.70208 10.7221 10.2979 10.7221 10.682 10.3639L19.402 2.23131C20.0659 1.61214 19.6277 0.5 18.7199 0.5H1.28006C0.372261 0.5 -0.0658663 1.61214 0.598015 2.23131L9.31795 10.3639Z" fill="#A351E2"></path>
-                    </svg>
+            
+
+        <div class="spinprocess">
+            <div id="orientationer" orientation="horizontal" class="orientationerx"></div>
+            <div id="pointers" class="pointersy">
+                <svg id="pointerfirst" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="pointercolor" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path id="pointer-1-ypath" d="m11.998 17 7-8h-14z"></path>
+                    <path id="pointer-1-xpath" d="m9 19 8-7-8-7z" style="display: none;"></path>
+                </svg>
+                <svg id="pointersecond" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="pointercolor" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path id="pointer-2-ypath" d="M5 15h14l-7-8z"></path>
+                    <path id="pointer-2-xpath" d="M15 19V5l-8 7z" style="display: none;"></path>
+                </svg>
             </div>
 
-            <div id="spinners-container" class="spinners-container">
+
+            <div id="spinners-container" class="spinners-containerx">
                 
             </div>
 
-            <div class="pointer bottom">
-                    <svg width="20" height="11" viewBox="0 0 20 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.31795 0.636108C9.70208 0.277851 10.2979 0.27785 10.682 0.636107L19.402 8.76869C20.0659 9.38786 19.6277 10.5 18.7199 10.5H1.28006C0.372261 10.5 -0.0658663 9.38786 0.598015 8.76869L9.31795 0.636108Z" fill="#A351E2"></path>
-                    </svg>
-            </div>                    <!---->
+        </div>
+                        <!---->
                 
-            <div class="drops">
+        <div class="drops">
                 <span class="title">Potential Drops</span>
-                <div id="rowdrops" class="row items">
+                <div id="rowdrops" class="row items" style="grid-template-columns:repeat(auto-fit, minmax(20rem, 1fr))">
                 </div>
             </div>
-
-    </div>
+        </div>
+    
                         
                 
                 
@@ -183,6 +191,7 @@
         </div>
 
     </div>
+
 
 
 

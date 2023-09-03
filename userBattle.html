@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>userBattle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="cases_data.js"></script>
+</head>
+<body class="bodyessential">
+    
+    <div id="row-top" class="topline"></div>
+    <div id="header" class="default">
+        <div class="logo-col"></div>
+            <div class="content"></div>
+        
+            <div class="navbar">
+                <div class="NavTop">
+                    <a href="/Leaderboard" class="navigation-item">Leaderboard</a>
+                    <a href="/FAQ" class="navigation-item">FAQ</a>
+                    <a href="/Affiliates" class="navigation-item">Affiliates</a>
+                    <a href="/Fairness" class="navigation-item">Fairness</a>
+                    <a href="/self-exclude" class="navigation-item">Game Responsibly</a>
+                </div>
+                <div class="bottom">
+                    <div class="NavBot">
+                <div class="section left">
+                    <a href="./">
+                        <button class="B_Modes" id="B_Start">Modes</button>
+                    </a>
+                    <a href="./CaseNav">
+                        <button class="B_Modes" id="B_Start">Cases</button>
+                    </a>
+                    <a href="./Battles">
+                        <button class="B_Modes" id="B_Battle">Battles</button>
+                    </a>
+
+                </div>
+                <div id="sectionright" class="section right">
+                    <button class="B_Guthaben" id="b_balance">Balance: 
+                        <div class="GuthabenContainer">
+                            <span id="balance-amount"></span>                            
+                        </div>
+                    </button>                    
+                    <div id="balance-input-container" class="balanceinputcontainer"></div>                    
+                </div>
+               
+                </div>
+            </div>     
+            </div>
+        
+    </div>
+
+
+    <div id="appContent" class="battlerunner">
+        <div class="runbattlecontainer">
+            <div class="runbattleinfo">
+                <div class="runbattlecost">
+                    <a href="./Battles">
+                        <button type="button" class="backbutton">Back</button>
+                    </a>
+                    <div class="battlecostpricewrapper">
+                        <div class="battlecostimagewrapper">
+                            <img src="/images/gem.svg">
+                        </div>
+                        <span id="battle-cost-price" class="battlecostprice">unknown</span>
+                    </div>
+                </div>
+                <div id="runbattlecaseinfos" class="runbattlecaseinfos">
+                    <div id="runbattlecaseinfosname" class="runbattlecaseinfosname"></div>
+                    <div class="runbattlecaseinfosprice">
+                        <div class="runbattlecaseinfosimagecontainer">
+                            <img src="/images/gem.svg">
+                        </div>
+                        <span id="runbattlecaseinfospricetext" class="runbattlecaseinfospricetext"></span>
+                    </div>
+                </div>
+                <div class="runbattlemodeinfo">
+                    <div class="runbattlemodeinfocontainer">
+                        <div id="runbattleplayermode" class="runbattleplayermode">unknown</div>
+                        <div class="runbattlemodecontainer">
+                            <div id="runbattlemode" class="runbattlemode">unknown</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="runbattleadditionalinfo">
+                <div class="runbattleline">
+                    <div id="roundcontainer">
+
+                    </div>
+                    <button type="button" class="runbattlefairbutton">Provably Fair</button>
+                </div>
+                <div class="runbattlecurrentcasecontainer">
+                    <div class="runbattlecurrentcaselimiter">
+                        <div class="runbattlecurrentcasefader"></div>
+                        <div class="runbattlecasesspinner" id="runbattlecasesspinner">
+                            <div class="runbattlecasescontainer" id="runbattlecasescontainer">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="actual-battle" class="actualbattle">
+                <div id="pointers" class="actualpointersx">
+                    <svg id="pointerfirst" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="pointercolor" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path id="pointer-1-ypath" d="m11.998 17 7-8h-14z" style="display: none;"></path>
+                        <path id="pointer-1-xpath" d="m9 19 8-7-8-7z"></path>
+                    </svg>
+                    <svg id="pointersecond" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="pointercolor" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path id="pointer-2-ypath" d="M5 15h14l-7-8z" style="display: none;"></path>
+                        <path id="pointer-2-xpath" d="M15 19V5l-8 7z"></path>
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <script src="battleRunner.js"></script>
+
+</body>
+</html>

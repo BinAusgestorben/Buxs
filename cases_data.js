@@ -1,18 +1,11 @@
-/*
-let gold = ["gold","/images/colors/gold.png", "drop-shadow(rgb(255, 215, 0) 0px 0px 10px)"];
-let red = ["red","/images/colors/red.png", "drop-shadow(rgba(228, 56, 56, 0.9) 0px 0px 10px)"];
-let pink = ["pink","/images/colors/pink.png","drop-shadow(rgba(211, 46, 230, 0.8) 0px 0px 10px)"];
-let purple = ["purple","/images/colors/purple.png","drop-shadow(rgba(136, 71, 255, 0.7) 0px 0px 10px)"];
-let blue = ["blue","/images/colors/blue.png","drop-shadow(rgba(75, 105, 255, 0.6) 0px 0px 10px)"];
-let grey = ["grey","/images/colors/grey.png","drop-shadow(rgba(176, 195, 217, 0.4) 0px 0px 10px)"];
-*/
 
-let gold = ["images/colors/gold.png", "drop-shadow(rgb(255, 215, 0) 0px 0px 10px)","gold"];
-let red = ["images/colors/red.png", "drop-shadow(rgba(228, 56, 56, 0.9) 0px 0px 10px)","red"];
-let pink = ["images/colors/pink.png","drop-shadow(rgba(211, 46, 230, 0.8) 0px 0px 10px)","pink"];
-let purple = ["images/colors/purple.png","drop-shadow(rgba(136, 71, 255, 0.7) 0px 0px 10px)","purple"];
-let blue = ["images/colors/blue.png","drop-shadow(rgba(75, 105, 255, 0.6) 0px 0px 10px)","blue"];
-let grey = ["images/colors/grey.png","drop-shadow(rgba(176, 195, 217, 0.4) 0px 0px 10px)","grey"];
+
+let gold = ["/images/colors/gold.png", "drop-shadow(rgb(255, 215, 0) 0px 0px 10px)","gold"];
+let red = ["/images/colors/red.png", "drop-shadow(rgba(228, 56, 56, 0.9) 0px 0px 10px)","red"];
+let pink = ["/images/colors/pink.png","drop-shadow(rgba(211, 46, 230, 0.8) 0px 0px 10px)","pink"];
+let purple = ["/images/colors/purple.png","drop-shadow(rgba(136, 71, 255, 0.7) 0px 0px 10px)","purple"];
+let blue = ["/images/colors/blue.png","drop-shadow(rgba(75, 105, 255, 0.6) 0px 0px 10px)","blue"];
+let grey = ["/images/colors/grey.png","drop-shadow(rgba(176, 195, 217, 0.4) 0px 0px 10px)","grey"];
 
 
 

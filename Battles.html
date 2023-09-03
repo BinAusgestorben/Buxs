@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="cases_data.js"></script>
 </head>
-<body>
+<body class="bodyessential">
     
     
     <div id="row-top" class="topline"></div>
@@ -36,16 +40,13 @@
                     </a>
 
                 </div>
-                <div class="section right">
-                    <a href="./Case">
-                        <button class="B_Guthaben" id="b_balance">Balance: <div class="GuthabenContainer">
-                            <span id="balance-amount"></span>
+                <div id="sectionright" class="section right">
+                    <button class="B_Guthaben" id="b_balance">Balance: 
+                        <div class="GuthabenContainer">
+                            <span id="balance-amount"></span>                            
                         </div>
-                    </button>
-                    </a>
-                    
-
-
+                    </button>                    
+                    <div id="balance-input-container" class="balanceinputcontainer"></div>                    
                 </div>
                
                 </div>
@@ -56,8 +57,30 @@
 
 
 
-    <div>
-        <h1>Hio</h1>
+    <div id="appContentBattles" class="battleList">
+       <div class="battleListContainer">
+            <div class="battleListNav">
+                <div class="battleListSortContainer">
+                    <button id="battle-Sort-Price-btn" class="battleListSort active">Price</button>
+                    <button id="battle-Sort-Date-btn" class="battleListSort">Date</button>
+                </div>
+                <div class="createBattleContainer">
+                    <div class="createBattleInfo">
+                        <div id="active-Battle-Info" class="activeBattleInfo">5 Active Battles</div>
+                        <div class="battleInfoSpacer"></div>
+                        <div id="joinable-Battle-Info" class="joinableBattleInfo"> 2 Joinable Battles</div>
+                    </div>
+                    <a class="createBattle" href="./create">
+                        <button id="create-Battle-btn" class="createbattlebtn" type="button">Create Battle</button>
+                    </a>
+                </div>
+            </div>
+            <div id="battles-Container" class="battlesContainer">
+                <div id="battles-Container-List" class="battlesContainerList">
+
+                </div>
+            </div>
+       </div>
     </div>
 
 
@@ -77,7 +100,7 @@
     </div>
 
 
-
+    <script src="Battles.js"></script>
 
 </body>
 </html>
